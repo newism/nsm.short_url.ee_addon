@@ -25,7 +25,7 @@ Tag reference
 
 ### `{exp:nsm_short_url:link}`
 
-    {exp:nsm_short_url:link (entry_id | url_title) [, host, link_content, template_group, redirect_with_url_title]}
+    {exp:nsm_short_url:link (entry_id | url_title) [, host, link_content, template_group, redirect_with_entry_id]}
 
 Creates a short url link wrapped in `<a>` tags.
 
@@ -53,27 +53,37 @@ Manipulate the link content. The entry ID is outputted by default.
 
 Override the default template group. This parameter is ignored if the `host` parameter is used.
 
-#### `redirect_with_url_title='no'` [optional, default: 'yes']
+#### `redirect_with_entry_id='yes'` [optional, default: 'no']
 
-If this attribute is set an additional character ('u') will be prepended to the short url. The `{exp:nsm_short_url:redirect}` tag recognises this and redirects the user to a url which appends the entries `url_title` to the weblogs comment path. Default behavior is to not add the extra character and therefore redirect to an `entry_id` based url.
+If this attribute is set an additional character ('-') will be prepended to the short url. The `{exp:nsm_short_url:redirect}` tag recognises this and redirects the user to a url which appends the entries `entry_id` to the weblogs comment path. Default behavior is to not add the extra character and therefore redirect to an `url_title` based url.
 
 ### `{exp:nsm_short_url:link_url}`
 
-    {exp:nsm_short_url:link_url (entry_id | url_title) [, host, template_group, redirect_with_url_title ]}
+    {exp:nsm_short_url:link_url (entry_id | url_title) [, host, template_group, redirect_with_entry_id ]}
 
 Returns the raw URL without the wrapping `<a>` tags. Accepts same tag parameters as `{exp:nsm_short_url:link}` minus `link_content`.
 
 ### `{exp:nsm_short_url:meta}`
 
-    {exp:nsm_short_url:meta (entry_id | url_title) [, host,  template_group, redirect_with_url_title ]}
+    {exp:nsm_short_url:meta (entry_id | url_title) [, host,  template_group, redirect_with_entry_id ]}
 
 Returns a meta tag for sort URL hinting.  Accepts same tag parameters as `{exp:nsm_short_url:link}` minus `link_content`.
 
 ### `{exp:nsm_short_url:redirect}`
 
+    {exp:nsm_short_url:redirect [, key]}
+
 Place this tag in your redirect template group. The default template group is `s` however this can be modified using the `template_group` parameter when creating the short url.
 
-Redirects the user to the actual URL using the weblog path preferences. If `redirect_with_url_title` was set when creating the short URL the `url_title` will be appended to the comment path otherwise the `enrtry_id` will be used.
+Redirects the user to the actual URL using the weblog path preferences. If `redirect_with_entry_id` was set when creating the short URL the `entry_id` will be appended to the comment path otherwise the `url_title` will be used.
+
+#### Tag Parameters
+
+There is only one optional parameter for this tag
+
+##### `key='{segment_1}'` [required, default: '{segment_2}']
+
+By default this tag checks the second segment for an ID key which is used to look up the entry long url. Override the default key with another segment or explicit key.
 
 User guide
 ----------
@@ -90,18 +100,18 @@ User guide
     {exp:nsm_short_url:link entry_id="{entry_id}"}
     {exp:nsm_short_url:link entry_id="{entry_id}" link_content="Permalink"}
     {exp:nsm_short_url:link entry_id="{entry_id}" template_group="short"}
-    {exp:nsm_short_url:link entry_id="{entry_id}" redirect_with_url_title="TRUE"}
+    {exp:nsm_short_url:link entry_id="{entry_id}" redirect_with_entry_id="TRUE"}
     {exp:nsm_short_url:link entry_id="{entry_id}" host="http://l-g.me/"}
-    {exp:nsm_short_url:link entry_id="{entry_id}" host="http://l-g.me/" redirect_with_url_title="TRUE" }
+    {exp:nsm_short_url:link entry_id="{entry_id}" host="http://l-g.me/" redirect_with_entry_id="TRUE" }
 
 #### Using the `{url_title}` parameter
 
     {exp:nsm_short_url:link url_title="{url_title}"}
     {exp:nsm_short_url:link url_title="{url_title}" link_content="Permalink"}
     {exp:nsm_short_url:link url_title="{url_title}" template_group="short"}
-    {exp:nsm_short_url:link url_title="{url_title}" redirect_with_url_title="TRUE"}
+    {exp:nsm_short_url:link url_title="{url_title}" redirect_with_entry_id="TRUE"}
     {exp:nsm_short_url:link url_title="{url_title}" host="http://l-g.me/" }
-    {exp:nsm_short_url:link url_title="{url_title}" host="http://l-g.me/" redirect_with_url_title="TRUE"}
+    {exp:nsm_short_url:link url_title="{url_title}" host="http://l-g.me/" redirect_with_entry_id="TRUE"}
 
 
 Release Notes
