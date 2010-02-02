@@ -141,9 +141,9 @@ There are no specific upgrade notes for this version.
 Support
 -------
 
-Technical support is available primarily through the [ExpressionEngine forums][ee_forums]. [Leevi Graham][lg] and [Newism][newism] do not provide direct phone support. No representations or guarantees are made regarding the response time in which support questions are answered.
+Technical support is available primarily through the [ExpressionEngine forums][ee_forums]. [Leevi Graham][lg] and [Newism][nsm] do not provide direct phone support. No representations or guarantees are made regarding the response time in which support questions are answered.
 
-Although we are actively developing this addon, [Leevi Graham][lg] and [Newism][newism] makes no guarantees that it will be upgraded within any specific timeframe.
+Although we are actively developing this addon, [Leevi Graham][lg] and [Newism][nsm] makes no guarantees that it will be upgraded within any specific timeframe.
 
 License
 ------
