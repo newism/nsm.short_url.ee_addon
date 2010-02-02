@@ -23,7 +23,9 @@ Technical requirements include:
 Tag reference
 ------------
 
-### `{exp:nsm_short_url:link (entry_id | url_title) [, host, link_content, template_group, redirect_with_url_title ]}{/exp:module:method}`
+### `{exp:nsm_short_url:link}`
+
+    {exp:nsm_short_url:link (entry_id | url_title) [, host, link_content, template_group, redirect_with_url_title]}
 
 Creates a short url link wrapped in `<a>` tags.
 
@@ -55,11 +57,15 @@ Override the default template group. This parameter is ignored if the `host` par
 
 If this attribute is set an additional character ('u') will be prepended to the short url. The `{exp:nsm_short_url:redirect}` tag recognises this and redirects the user to a url which appends the entries `url_title` to the weblogs comment path. Default behavior is to not add the extra character and therefore redirect to an `entry_id` based url.
 
-### `{exp:nsm_short_url:link_url (entry_id | url_title) [, host, template_group, redirect_with_url_title ]}{/exp:module:method}`
+### `{exp:nsm_short_url:link_url}`
+
+    {exp:nsm_short_url:link_url (entry_id | url_title) [, host, template_group, redirect_with_url_title ]}
 
 Returns the raw URL without the wrapping `<a>` tags. Accepts same tag parameters as `{exp:nsm_short_url:link}` minus `link_content`.
 
-### `{exp:nsm_short_url:meta (entry_id | url_title) [, host,  template_group, redirect_with_url_title ]}{/exp:module:method}`
+### `{exp:nsm_short_url:meta}`
+
+    {exp:nsm_short_url:meta (entry_id | url_title) [, host,  template_group, redirect_with_url_title ]}
 
 Returns a meta tag for sort URL hinting.  Accepts same tag parameters as `{exp:nsm_short_url:link}` minus `link_content`.
 
