@@ -19,6 +19,7 @@ class Nsm_short_url {
 	// private attributes
 	protected $segment_type			= FALSE;
 	private $query_string			= FALSE;
+	private $entry_id_trigger		= "-";
 
 	private $long_url 				= FALSE;
 	private $short_url 				= FALSE;
@@ -61,12 +62,12 @@ class Nsm_short_url {
 	 **/
 	public function redirect(){
 
-		$segment_type = 'entry_id';
+		$segment_type = 'url_title';
 		$key = $this->EE->TMPL->fetch_param('key') ? $this->EE->TMPL->fetch_param('key') : $this->EE->TMPL->segment_vars['segment_2'];
-		if(strncmp($key, 'u', 1) == 0)
+		if(strncmp($key, $this->entry_id_trigger, 1) == 0)
 		{
 			$this->entry_id = substr($key, 1);
-			$segment_type = 'url_title';
+			$segment_type = 'entry_id';
 		}
 		else
 		{
@@ -89,10 +90,10 @@ class Nsm_short_url {
 			return FALSE;
 
 		$host 						= $this->EE->TMPL->fetch_param('host');
-		$redirect_with_url_title 	= ($this->EE->TMPL->fetch_param('redirect_with_url_title') == "yes") ? TRUE : FALSE;
+		$redirect_with_entry_id 	= ($this->EE->TMPL->fetch_param('redirect_with_entry_id') == "yes") ? TRUE : FALSE;
 		$template_group 			= $this->EE->TMPL->fetch_param('template_group') ? $this->EE->TMPL->fetch_param('template_group') : 's';
 
-		$key = ($redirect_with_url_title) ? "u" . $this->entry_id : $this->entry_id;
+		$key = ($redirect_with_entry_id) ? $this->entry_id_trigger . $this->entry_id : $this->entry_id;
 		return $this->short_url = ($host == FALSE)
 					? $this->EE->functions->create_url($template_group . "/" . $key)
 					: $host . "/" . $key;
