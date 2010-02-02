@@ -6,7 +6,7 @@ $plugin_info = array(
 	'pi_author' => 'Leevi Graham',
 	'pi_author_url' => 'http://leevigraham.com/',
 	'pi_description' => 'Shorten URLs for the post you are viewing, adding meta LINK in head, and A link in body, and a permanent redirect',
-	'pi_usage' => ""
+	'pi_usage' => "Refer to the README"
 );
 
 class Nsm_short_url {
@@ -143,31 +143,5 @@ class Nsm_short_url {
 		$this->comment_url = $row->comment_url;
 
 		return $query->num_rows();
-	}
-
-	public function usage() { ob_start(); ?>Pretty simple.
-
-In you entry template put:
-
-Short Url: {exp:nsm_short_url:link entry_id="{entry_id}"}
-Short Url: {exp:nsm_short_url:link entry_id="{entry_id}" link_content="Permalink"}
-Short Url: {exp:nsm_short_url:link entry_id="{entry_id}" template_group="short"}
-Short Url: {exp:nsm_short_url:link entry_id="{entry_id}" redirect_with_url_title="TRUE"}
-Short Url: {exp:nsm_short_url:link entry_id="{entry_id}" host="http://l-g.me/"}
-Short Url: {exp:nsm_short_url:link entry_id="{entry_id}" host="http://l-g.me/" redirect_with_url_title="TRUE" }
-
-Short Url: {exp:nsm_short_url:link url_title="{url_title}"}
-Short Url: {exp:nsm_short_url:link url_title="{url_title}" link_content="Permalink"}
-Short Url: {exp:nsm_short_url:link url_title="{url_title}" template_group="short"}
-Short Url: {exp:nsm_short_url:link url_title="{url_title}" redirect_with_url_title="TRUE"}
-Short Url: {exp:nsm_short_url:link url_title="{url_title}" host="http://l-g.me/" }
-Short Url: {exp:nsm_short_url:link url_title="{url_title}" host="http://l-g.me/" redirect_with_url_title="TRUE"}
-
-
-
-	<?php
-		$buffer = ob_get_contents();
-		ob_end_clean();
-		return $buffer;
 	}
 }

@@ -83,6 +83,27 @@ User guide
 3. Add `{exp:nsm_short_url:link}` to your templates where you want your short links to be outputted
 4. Optional: Add `{exp:nsm_short_url:meta}` to the head of your site to add a short url hint for search engines, social media sites.
 
+### Examples of the `{exp:nsm_short_url:link}` tag
+
+#### Using the `{entry_id}` parameter
+
+    {exp:nsm_short_url:link entry_id="{entry_id}"}
+    {exp:nsm_short_url:link entry_id="{entry_id}" link_content="Permalink"}
+    {exp:nsm_short_url:link entry_id="{entry_id}" template_group="short"}
+    {exp:nsm_short_url:link entry_id="{entry_id}" redirect_with_url_title="TRUE"}
+    {exp:nsm_short_url:link entry_id="{entry_id}" host="http://l-g.me/"}
+    {exp:nsm_short_url:link entry_id="{entry_id}" host="http://l-g.me/" redirect_with_url_title="TRUE" }
+
+#### Using the `{url_title}` parameter
+
+    {exp:nsm_short_url:link url_title="{url_title}"}
+    {exp:nsm_short_url:link url_title="{url_title}" link_content="Permalink"}
+    {exp:nsm_short_url:link url_title="{url_title}" template_group="short"}
+    {exp:nsm_short_url:link url_title="{url_title}" redirect_with_url_title="TRUE"}
+    {exp:nsm_short_url:link url_title="{url_title}" host="http://l-g.me/" }
+    {exp:nsm_short_url:link url_title="{url_title}" host="http://l-g.me/" redirect_with_url_title="TRUE"}
+
+
 Release Notes
 -------------
 
