@@ -17,7 +17,7 @@ class Nsm_short_url {
 	private $comment_url 			= FALSE;
 
 	// private attributes
-	protected $segment_type			= FALSE;
+	private $segment_type			= FALSE;
 	private $query_string			= FALSE;
 	private $entry_id_trigger		= "-";
 
@@ -80,7 +80,6 @@ class Nsm_short_url {
 		{
 			return $this->EE->TMPL->no_results;
 		}
-			
 
 		header("HTTP/1.1 301 Moved Permanently");
 		header("Location: " . $this->_buildLongURL($segment_type));
