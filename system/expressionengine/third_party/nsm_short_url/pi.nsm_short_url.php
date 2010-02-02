@@ -62,19 +62,18 @@ class Nsm_short_url {
 	public function redirect(){
 
 		$segment_type = 'entry_id';
-
-		if(strncmp($this->EE->TMPL->segment_vars['segment_2'], 'u', 1) == 0)
+		$key = $this->EE->TMPL->fetch_param('key') ? $this->EE->TMPL->fetch_param('key') : $this->EE->TMPL->segment_vars['segment_2'];
+		if(strncmp($key, 'u', 1) == 0)
 		{
-			$this->entry_id = substr($this->EE->TMPL->segment_vars['segment_2'], 1);
+			$this->entry_id = substr($key, 1);
 			$segment_type = 'url_title';
 		}
 		else
 		{
 			$this->entry_id = $this->EE->TMPL->segment_vars['segment_2'];
 		}
-
-		if(!is_numeric($this->entry_id) || !$this->_getEntryAttributes())
-			exit("404");
+		// if(!is_numeric($this->entry_id) || !$this->_getEntryAttributes())
+		// 	exit("404");
 
 		header("HTTP/1.1 301 Moved Permanently");
 		header("Location: " . $this->_buildLongURL($segment_type));
@@ -90,7 +89,7 @@ class Nsm_short_url {
 			return FALSE;
 
 		$host 						= $this->EE->TMPL->fetch_param('host');
-		$redirect_with_url_title 	= ($this->EE->TMPL->fetch_param('redirect_with_url_title') = "yes") ? TRUE : FALSE;
+		$redirect_with_url_title 	= ($this->EE->TMPL->fetch_param('redirect_with_url_title') == "yes") ? TRUE : FALSE;
 		$template_group 			= $this->EE->TMPL->fetch_param('template_group') ? $this->EE->TMPL->fetch_param('template_group') : 's';
 
 		$key = ($redirect_with_url_title) ? "u" . $this->entry_id : $this->entry_id;
@@ -104,6 +103,7 @@ class Nsm_short_url {
 	 **/
 	private function _buildLongURL($segment_type)
 	{
+		$this->_getEntryAttributes();
 		$pages = $this->EE->config->item('site_pages');
 
 		$this->query_string = (array_key_exists($this->entry_id, $pages['uris']))
