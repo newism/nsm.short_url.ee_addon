@@ -49,7 +49,7 @@ If no host parameter is passed the link will be generated using the current site
 
 Manipulate the link content. The entry ID is outputted by default.
 
-##### `template_group='short'` [optional, default: 'x']
+##### `template_group='short'` [optional, default: '-']
 
 Override the default template group. This parameter is ignored if the `host` parameter is used.
 
@@ -73,7 +73,7 @@ Returns a meta tag for sort URL hinting.  Accepts same tag parameters as `{exp:n
 
     {exp:nsm_short_url:redirect [, key]}
 
-Place this tag in your redirect template group. The default template group is `x` however this can be modified using the `template_group` parameter when creating the short url.
+Place this tag in your redirect template group. The default template group name is just a dash `-` however this can be modified using the `template_group` parameter when creating the short url.
 
 Redirects the user to the actual URL using the weblog path preferences. If `redirect_with_entry_id` was set when creating the short URL the `entry_id` will be appended to the comment path otherwise the `url_title` will be used.
 
@@ -95,7 +95,7 @@ By default this tag checks the second segment for an ID key which is used to loo
 User guide
 ----------
 
-1. Create a new template group called 'x' with a single index.html template.
+1. Create a new template group called '-' with a single index.html template.
 2. Add `{exp:nsm_short_url:redirect}` to the template.
 3. Add `{exp:nsm_short_url:link}` to your templates where you want your short links to be outputted
 4. Optional: Add `{exp:nsm_short_url:meta}` to the head of your site to add a short url hint for search engines, social media sites.

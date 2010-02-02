@@ -21,7 +21,7 @@ class Nsm_short_url {
 	private $query_string			= FALSE;
 
 	private $entry_id_trigger		= "-";
-	private $template_group			= "x";
+	private $template_group			= "-";
 
 	private $long_url 				= FALSE;
 	private $short_url 				= FALSE;
