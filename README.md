@@ -77,6 +77,13 @@ Place this tag in your redirect template group. The default template group is `s
 
 Redirects the user to the actual URL using the weblog path preferences. If `redirect_with_entry_id` was set when creating the short URL the `entry_id` will be appended to the comment path otherwise the `url_title` will be used.
 
+If no entries are found this tag returns a `{if no_results}` tag block. Example:
+
+    {exp:nsm_short_url:redirect}
+        {if no_results}{redirect="404"}{/if}
+    {/exp:nsm_short_url:redirect}
+
+
 #### Tag Parameters
 
 There is only one optional parameter for this tag
