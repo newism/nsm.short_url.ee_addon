@@ -19,7 +19,9 @@ class Nsm_short_url {
 	// private attributes
 	private $segment_type			= FALSE;
 	private $query_string			= FALSE;
+
 	private $entry_id_trigger		= "-";
+	private $template_group			= "x";
 
 	private $long_url 				= FALSE;
 	private $short_url 				= FALSE;
@@ -32,9 +34,15 @@ class Nsm_short_url {
 
 		$this->entry_id 			= $this->EE->TMPL->fetch_param('entry_id');
 		$this->url_title 			= $this->EE->TMPL->fetch_param('url_title');
+
+		if($this->EE->config->item('nsm_short_url_entry_id_trigger'))
+			$this->entry_id_trigger = $this->EE->config->item('nsm_short_url_entry_id_trigger');
+
+		if($this->EE->config->item('nsm_short_url_template_group'))
+			$this->template_group = $this->EE->config->item('nsm_short_url_template_group');
+
 	}
 
-	
 	public function link()
 	{
 		if(!$this->_buildShortUrl())
@@ -96,7 +104,7 @@ class Nsm_short_url {
 
 		$host 						= $this->EE->TMPL->fetch_param('host');
 		$redirect_with_entry_id 	= ($this->EE->TMPL->fetch_param('redirect_with_entry_id') == "yes") ? TRUE : FALSE;
-		$template_group 			= $this->EE->TMPL->fetch_param('template_group') ? $this->EE->TMPL->fetch_param('template_group') : 's';
+		$template_group 			= $this->EE->TMPL->fetch_param('template_group') ? $this->EE->TMPL->fetch_param('template_group') : $this->template_group;
 
 		$key = ($redirect_with_entry_id) ? $this->entry_id_trigger . $this->entry_id : $this->entry_id;
 		return $this->short_url = ($host == FALSE)
