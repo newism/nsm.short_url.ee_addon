@@ -73,8 +73,14 @@ class Nsm_short_url {
 		{
 			$this->entry_id = $this->EE->TMPL->segment_vars['segment_2'];
 		}
-		// if(!is_numeric($this->entry_id) || !$this->_getEntryAttributes())
-		// 	exit("404");
+
+		// if there is no entry_id or the entry doesn't exist
+		// return no results tag
+		if(!is_numeric($this->entry_id) || !$this->_getEntryAttributes())
+		{
+			return $this->EE->TMPL->no_results;
+		}
+			
 
 		header("HTTP/1.1 301 Moved Permanently");
 		header("Location: " . $this->_buildLongURL($segment_type));
